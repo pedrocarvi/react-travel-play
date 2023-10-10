@@ -1,12 +1,27 @@
 import "./App.css";
 import React from "react";
-import NavigationBar from "./shared/navigationbar/NavigationBar";
+// Routing
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+// Pages
+import Homepage from "./pages/homepage/Homepage";
+import AddPost from "./pages/addpost/AddPost";
+import PostDetail from "./pages/postdetail/PostDetail";
+import Login from "./pages/login/Login";
+import SignUp from "./pages/signup/SignUp";
+import UserDashboard from "./pages/user_dashboard/UserDashboard";
 
 const App = () => {
   return (
-    <div>
-      <NavigationBar></NavigationBar>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="" element={<Homepage />} />
+        <Route path="add-post" element={<AddPost />} />
+        <Route path="post-details/:id" element={<PostDetail />} />
+        <Route path="my-account" element={<UserDashboard />} />
+        <Route path="login" element={<Login />} />
+        <Route path="sign-up" element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
