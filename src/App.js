@@ -9,6 +9,7 @@ import PostDetail from "./pages/postdetail/PostDetail";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
 import UserDashboard from "./pages/user_dashboard/UserDashboard";
+import Favorites from "./components/favorites/Favorites";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="my-account" element={<UserDashboard />} />
         <Route path="login" element={<Login />} />
         <Route path="sign-up" element={<SignUp />} />
+        <Route path="favorites" element={<Favorites />} />
       </Routes>
     </BrowserRouter>
   );
