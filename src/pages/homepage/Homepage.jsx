@@ -6,10 +6,11 @@ const Homepage = () => {
     return (
         <div>
             <NavigationBar></NavigationBar>
-            <h1>Homepage</h1>
+            {/* Crear componente de categorias */}
+            {/* El componente post debe consumir getAllPost o los Post que son destacados */}
             <Post></Post>
         </div>
     )
 }
 
-export default Homepage
+export default Homepage;
