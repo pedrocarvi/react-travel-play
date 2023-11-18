@@ -1,5 +1,6 @@
 import Card from "react-bootstrap/Card";
 import PostFutbol from "../../assets/images/PostFutbol.avif";
+import { Link } from "react-router-dom";
 
 const cardStyle = {
   width: "18rem",
@@ -26,19 +27,23 @@ const cardBodyStyle = {
 
 function Post() {
   return (
-    <Card style={cardStyle}>
-      <Card.Body style={cardBodyStyle}>
-        <div>
-          <Card.Title style={{ alignSelf: "flex-start" }}>TORNEO F5</Card.Title>
-          <Card.Subtitle
-            className="mb-2 text-light"
-            style={{ alignSelf: "flex-start" }}
-          >
-            Tifosi Futbol Club
-          </Card.Subtitle>
-        </div>
-      </Card.Body>
-    </Card>
+    <Link to="/post-details/1" style={{ textDecoration: "none" }}>
+      <Card style={cardStyle}>
+        <Card.Body style={cardBodyStyle}>
+          <div>
+            <Card.Title style={{ alignSelf: "flex-start" }}>
+              TORNEO F5
+            </Card.Title>
+            <Card.Subtitle
+              className="mb-2 text-light"
+              style={{ alignSelf: "flex-start" }}
+            >
+              Tifosi Futbol Club
+            </Card.Subtitle>
+          </div>
+        </Card.Body>
+      </Card>
+    </Link>
   );
 }
 
