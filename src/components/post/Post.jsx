@@ -18,11 +18,15 @@ const cardBodyStyle = {
   textAlign: "center", // Alineación del texto en el centro
 };
 
+const cardContenido = {
+  marginTop: "220px",
+};
+
 function Post() {
   return (
     <Card style={cardStyle}>
       <Card.Body style={cardBodyStyle}>
-        <Card.Title>TORNEO F5</Card.Title>
+        <Card.Title style={cardContenido}>TORNEO F5</Card.Title>
         <Card.Subtitle className="mb-2 text-light">
           Tifosi Futbol Club
         </Card.Subtitle>

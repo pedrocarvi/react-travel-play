@@ -1,16 +1,18 @@
-import React from 'react'
-import NavigationBar from '../../shared/navigationbar/NavigationBar'
-import Post from '../../components/post/Post'
+import React from "react";
+import NavigationBar from "../../shared/navigationbar/NavigationBar";
+import Post from "../../components/post/Post";
+import ListComponent from "../../components/listComponent/ListComponent";
+import Categories from "../../components/categories/Categories";
 
 const Homepage = () => {
-    return (
-        <div>
-            <NavigationBar></NavigationBar>
-            {/* Crear componente de categorias */}
-            {/* El componente post debe consumir getAllPost o los Post que son destacados */}
-            <Post></Post>
-        </div>
-    )
-}
-
+  return (
+    <div>
+      <NavigationBar></NavigationBar>
+      <Categories></Categories>
+      <br></br>
+      <br></br>
+      <ListComponent></ListComponent>
+    </div>
+  );
+};
 export default Homepage;
