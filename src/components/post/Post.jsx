@@ -9,27 +9,34 @@ const cardStyle = {
   display: "flex",
   flexDirection: "column",
   justifyContent: "flex-end", // Mueve el contenido hacia la parte inferior
-  alignItems: "center", // Centra horizontalmente
 };
 
 const cardBodyStyle = {
-  color: "white", // Color de texto blanco
-  fontWeight: "bold", // Texto en negrita
-  textAlign: "center", // Alineación del texto en el centro
-};
-
-const cardContenido = {
-  marginTop: "220px",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-end", // Mueve el contenido hacia la parte inferior
+  alignItems: "flex-start",
+  backgroundColor: "rgba(0, 0, 0, 0.5)", // Fondo semi-transparente
+  width: "100%", // Ancho completo del Card.Body
+  boxSizing: "border-box",
+  color: "white",
+  fontWeight: "bold",
+  padding: "20px", // Añade un relleno para separar del borde
 };
 
 function Post() {
   return (
     <Card style={cardStyle}>
       <Card.Body style={cardBodyStyle}>
-        <Card.Title style={cardContenido}>TORNEO F5</Card.Title>
-        <Card.Subtitle className="mb-2 text-light">
-          Tifosi Futbol Club
-        </Card.Subtitle>
+        <div>
+          <Card.Title style={{ alignSelf: "flex-start" }}>TORNEO F5</Card.Title>
+          <Card.Subtitle
+            className="mb-2 text-light"
+            style={{ alignSelf: "flex-start" }}
+          >
+            Tifosi Futbol Club
+          </Card.Subtitle>
+        </div>
       </Card.Body>
     </Card>
   );
