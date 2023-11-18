@@ -1,15 +1,17 @@
 import React from "react";
 import NavigationBar from "../../shared/navigationbar/NavigationBar";
 import Post from "../../components/post/Post";
+import ListComponent from "../../components/listComponent/ListComponent";
+import Categories from "../../components/categories/Categories";
 
 const Homepage = () => {
   return (
     <div>
       <NavigationBar></NavigationBar>
-      <h1>Homepage</h1>
+      <Categories></Categories>
       <br></br>
       <br></br>
-      <Post></Post>
+      <ListComponent></ListComponent>
     </div>
   );
 };
