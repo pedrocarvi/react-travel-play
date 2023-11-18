@@ -1,9 +1,8 @@
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import React from 'react'
+import { Button, Col, Dropdown, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './navigationbar.css'
+
 
 const NavigationBar = () => {
 
@@ -11,22 +10,40 @@ const NavigationBar = () => {
 
   return (
     <div>
-      <Navbar bg="primary" data-bs-theme="dark">
-        <Container>
-          <Link to="/" className='navigation-link'>
-            <Navbar.Brand> Travel and Play! </Navbar.Brand>
-          </Link>
-          <Nav className="me-auto">
-            <Link to="/" className='navigation-link'>  Inicio </Link>
-            <Link to="/add-post" className='navigation-link'> Añadir posteo </Link>
-            <Link to="/post-details/1" className='navigation-link'> Ver posteo </Link>
-            <Link to="/my-account" className='navigation-link'> Mi Cuenta </Link>
-            <Link to="/login" className='navigation-link'> Login </Link>
-            <Link to="/sign-up" className='navigation-link'> Sign Up </Link>
-            <Link to="/favorites" className='navigation-link'> Favorites </Link>
-          </Nav>
-        </Container>
-      </Navbar>
+      <Container className='p-0 m-0 border-bottom'>
+        <Row className='d-flex align-items-center justify-content-center p-0 m-0 py-4'>
+          <Col>
+            <Link to="/" className='navigation-link'>
+              Travel and Play
+            </Link>
+          </Col>
+          <Col className='d-flex justify-content-end'>
+            <Button variant="success" className='me-2'> Add post </Button>
+            <Dropdown>
+              <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
+                My account
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Link to="/my-account">
+                  <Dropdown.Item href="#/action-1"> Profile </Dropdown.Item>
+                </Link>
+                <Link to="/favorites">
+                  <Dropdown.Item href="#/action-2"> My favorites </Dropdown.Item>
+                </Link>
+                <Link to="/login">
+                  <Dropdown.Item href="#/action-3"> Logout </Dropdown.Item>
+                </Link>
+              </Dropdown.Menu>
+            </Dropdown>
+            {/* <Nav className="me-auto">
+              <Link to="/" className='navigation-link'> Home </Link>
+              <Link to="/add-post" className='navigation-link'> Añadir posteo </Link>
+            </Nav> */}
+          </Col>
+        </Row>
+
+      </Container>
     </div>
   )
 }

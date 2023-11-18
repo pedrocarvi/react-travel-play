@@ -1,9 +1,18 @@
 .navigation-link {
   padding: 10px 12px;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.9);
   text-decoration: none;
 }
 
 .navigation-link:hover {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(0, 0, 0, 0.75);
+}
+
+#navbarScrollingDropdown {
+  text-decoration: none;
+  color: black;
+}
+
+#navbar-logo {
+  text-decoration: none !important;
 }
