@@ -4,8 +4,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Pages
 import Homepage from "./pages/HomePage/Homepage";
-import AddPost from "./pages/AddPostPage/AddPost";
-import PostDetail from "./pages/PostsDetailsPage/PostDetail";
+import AddPostPage from "./pages/AddPostPage/AddPostPage";
+import PostDetailsPage from "./pages/PostsDetailsPage/PostDetailsPage";
 import Login from "./pages/LoginPage/Login";
 import SignUp from "./pages/SignUpPage/SignUp";
 import UserDashboard from "./pages/UserDashboard/UserDashboard";
@@ -16,8 +16,8 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="" element={<Homepage />} />
-        <Route path="add-post" element={<AddPost />} />
-        <Route path="post-details/:id" element={<PostDetail />} />
+        <Route path="add-post" element={<AddPostPage />} />
+        <Route path="post-details/:id" element={<PostDetailsPage />} />
         <Route path="my-account" element={<UserDashboard />} />
         <Route path="login" element={<Login />} />
         <Route path="sign-up" element={<SignUp />} />

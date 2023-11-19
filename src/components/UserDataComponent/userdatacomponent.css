@@ -1,0 +1,20 @@
+.userdata-container {
+  padding: 40px 0px;
+  width: 1200px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.userdata-image {
+  width: 150px;
+  height: 150px;
+  background-image: url("https://th.bing.com/th/id/OIP.qEQ1Ba7S5XdXj3x-yYx7iwHaE8?rs=1&pid=ImgDetMain");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 500px;
+}

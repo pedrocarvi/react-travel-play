@@ -1,16 +1,16 @@
 import React from "react";
 import NavigationBar from "../../shared/Navbar/NavigationBar";
-import UserDataComponent from "../../components/UserDataComponent/UserDataComponent";
+import AddPostComponent from "../../components/AddPostComponent/AddPostComponent";
 import Footer from "../../shared/Footer/Footer";
 
-const UserDashboard = () => {
+const AddPostPage = () => {
   return (
     <div>
       <NavigationBar />
-      <UserDataComponent />
+      <AddPostComponent />
       <Footer />
     </div>
   );
 };
 
-export default UserDashboard;
+export default AddPostPage;

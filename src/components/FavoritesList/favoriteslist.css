@@ -1,5 +1,13 @@
 .favoriteslist-container {
+  width: 1200px;
   max-width: 1200px;
   margin: 0 auto;
   padding: 50px 0px;
+}
+
+.favorites-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

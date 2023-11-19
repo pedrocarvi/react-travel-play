@@ -1,16 +1,16 @@
 import React from "react";
 import NavigationBar from "../../shared/Navbar/NavigationBar";
-import AddPostComponent from "../../components/AddPostComponent/AddPostComponent";
+import PostDetailsComponent from "../../components/PostDetailsComponent/PostDetailsComponent";
 import Footer from "../../shared/Footer/Footer";
 
-const AddPost = () => {
+const PostDetailsPage = () => {
   return (
     <div>
       <NavigationBar />
-      <AddPostComponent />
+      <PostDetailsComponent />
       <Footer />
     </div>
   );
 };
 
-export default AddPost;
+export default PostDetailsPage;
