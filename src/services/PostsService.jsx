@@ -1,4 +1,3 @@
-// PostService.js
 class PostService {
     constructor() {
         this.posts = [
@@ -62,8 +61,11 @@ class PostService {
     }
 
     getPostsByCategory(category) {
-        return this.posts.filter(post => post.category === category);
+        const lowerCaseCategory = category.toLowerCase();
+        const filteredPosts = this.posts.filter(post => post.category.toLowerCase() === lowerCaseCategory);
+        return filteredPosts;
     }
+
 }
 
 export default new PostService();
