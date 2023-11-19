@@ -1,0 +1,13 @@
+.navigation-link {
+  color: rgba(0, 0, 0, 0.9);
+  text-decoration: none;
+}
+
+.navigation-link:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+#nav-addpost-btn {
+  background-color: #9979f5;
+  border: none;
+}

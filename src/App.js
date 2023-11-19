@@ -3,13 +3,13 @@ import React from "react";
 // Routing
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Pages
-import Homepage from "./pages/homepage/Homepage";
-import AddPost from "./pages/addpost/AddPost";
-import PostDetail from "./pages/postdetail/PostDetail";
-import Login from "./pages/login/Login";
-import SignUp from "./pages/signup/SignUp";
-import UserDashboard from "./pages/user_dashboard/UserDashboard";
-import Favorites from "./components/favorites/Favorites";
+import Homepage from "./pages/HomePage/Homepage";
+import AddPost from "./pages/AddPostPage/AddPost";
+import PostDetail from "./pages/PostsDetailsPage/PostDetail";
+import Login from "./pages/LoginPage/Login";
+import SignUp from "./pages/SignUpPage/SignUp";
+import UserDashboard from "./pages/UserDashboard/UserDashboard";
+import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 
 const App = () => {
   return (
@@ -21,7 +21,7 @@ const App = () => {
         <Route path="my-account" element={<UserDashboard />} />
         <Route path="login" element={<Login />} />
         <Route path="sign-up" element={<SignUp />} />
-        <Route path="favorites" element={<Favorites />} />
+        <Route path="favorites" element={<FavoritesPage />} />
       </Routes>
     </BrowserRouter>
   );

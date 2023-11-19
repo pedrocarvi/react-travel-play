@@ -1,6 +1,6 @@
 import React from "react";
-import NavigationBar from "../../shared/navigationbar/NavigationBar";
-import ListComponent from "../../components/listComponent/ListComponent";
+import NavigationBar from "../../shared/Navbar/NavigationBar";
+import PostsList from "../../components/PostsList/PostsList";
 
 const UserDashboard = () => {
   return (
@@ -27,7 +27,7 @@ const UserDashboard = () => {
         </h3>
       </div>
       <div style={{ textAlign: "center", maxWidth: "85%", margin: "0 auto" }}>
-        <ListComponent></ListComponent>
+        <PostsList></PostsList>
       </div>
     </div>
   );

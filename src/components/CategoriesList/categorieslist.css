@@ -1,0 +1,24 @@
+.decoration-none {
+  text-decoration: none;
+}
+
+.categories-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 0px;
+}
+
+.category-box {
+  cursor: pointer;
+  transition: all ease-in-out 150ms;
+}
+
+.category-box:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.category-title {
+  padding-top: 20px;
+  color: #9979f5;
+  text-decoration: none;
+}

@@ -1,6 +1,6 @@
 import React from "react";
-import NavigationBar from "../../shared/navigationbar/NavigationBar";
-import LoginForm from "../../components/login/LoginForm";
+import NavigationBar from "../../shared/Navbar/NavigationBar";
+import LoginForm from "../../components/LoginForm/LoginForm";
 
 const Login = () => {
   return (

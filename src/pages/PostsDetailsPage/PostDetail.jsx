@@ -1,5 +1,5 @@
 import React from "react";
-import NavigationBar from "../../shared/navigationbar/NavigationBar";
+import NavigationBar from "../../shared/Navbar/NavigationBar";
 import Image from "react-bootstrap/Image";
 import PostFutbol from "../../assets/images/PostFutbol.avif";
 import Button from "react-bootstrap/Button";

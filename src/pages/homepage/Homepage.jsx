@@ -1,17 +1,17 @@
 import React from "react";
-import NavigationBar from "../../shared/navigationbar/NavigationBar";
-import Post from "../../components/post/Post";
-import ListComponent from "../../components/listComponent/ListComponent";
-import Categories from "../../components/categories/Categories";
+import './homepage.css'
+import NavigationBar from "../../shared/Navbar/NavigationBar";
+import CategoriesList from "../../components/CategoriesList/CategoriesList";
+import PostsList from "../../components/PostsList/PostsList";
+import Footer from "../../shared/Footer/Footer";
 
 const Homepage = () => {
   return (
     <div>
       <NavigationBar></NavigationBar>
-      <Categories></Categories>
-      <br></br>
-      <br></br>
-      <ListComponent></ListComponent>
+      <CategoriesList></CategoriesList>
+      <PostsList></PostsList>
+      <Footer></Footer>
     </div>
   );
 };

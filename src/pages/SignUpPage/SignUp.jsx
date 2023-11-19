@@ -1,5 +1,5 @@
 import React from "react";
-import NavigationBar from "../../shared/navigationbar/NavigationBar";
+import NavigationBar from "../../shared/Navbar/NavigationBar";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 

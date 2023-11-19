@@ -9,37 +9,35 @@ const NavigationBar = () => {
   // let registrado = true;
 
   return (
-    <div>
-      <Container className='p-0 m-0 border-bottom'>
-        <Row className='d-flex align-items-center justify-content-center p-0 m-0 py-4'>
+    <div className='border-bottom'>
+      <Container>
+        <Row className='d-flex align-items-center justify-content-center py-3'>
           <Col>
             <Link to="/" className='navigation-link'>
-              Travel and Play
+              <h2 className='fw-semibold fs-5 p-0 m-0'> Travel & Play </h2>
             </Link>
           </Col>
           <Col className='d-flex justify-content-end'>
-            <Button variant="success" className='me-2'> Add post </Button>
+            <Link to="/add-post">
+              <Button className='me-2' id='nav-addpost-btn'> <span style={{ fontWeight: 'bold' }}> + </span> Add post </Button>
+            </Link>
             <Dropdown>
-              <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
+              <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
                 My account
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Link to="/my-account">
+                <Link to="/my-account" className='navigation-link'>
                   <Dropdown.Item href="#/action-1"> Profile </Dropdown.Item>
                 </Link>
-                <Link to="/favorites">
+                <Link to="/favorites" className='navigation-link'>
                   <Dropdown.Item href="#/action-2"> My favorites </Dropdown.Item>
                 </Link>
-                <Link to="/login">
+                <Link to="/login" className='navigation-link'>
                   <Dropdown.Item href="#/action-3"> Logout </Dropdown.Item>
                 </Link>
               </Dropdown.Menu>
             </Dropdown>
-            {/* <Nav className="me-auto">
-              <Link to="/" className='navigation-link'> Home </Link>
-              <Link to="/add-post" className='navigation-link'> Añadir posteo </Link>
-            </Nav> */}
           </Col>
         </Row>
 
