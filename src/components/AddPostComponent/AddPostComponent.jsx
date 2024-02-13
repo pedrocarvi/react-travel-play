@@ -48,7 +48,6 @@ const AddPostComponent = () => {
         <div className='addpost-container'>
             <h3>Add new post</h3>
             <Form onSubmit={handlePostData} id='addpost-form'>
-
                 <Form.Group className="mb-3" controlId="formBasicTitle">
                     <Form.Label>Title</Form.Label>
                     <Form.Control type="text" placeholder="Enter title" name="title" onChange={handleInputChange} />
@@ -67,7 +66,6 @@ const AddPostComponent = () => {
                         Add new
                     </Button>
                 </div>
-
             </Form>
         </div>
     );

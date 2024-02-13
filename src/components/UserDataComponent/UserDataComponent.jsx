@@ -1,6 +1,7 @@
 import React from 'react'
 import './userdatacomponent.css'
 import PostsList from '../PostsList/PostsList'
+import apiService from '../../services/apiservice'
 
 const UserDataComponent = () => {
     return (

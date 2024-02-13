@@ -1,21 +1,73 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import './loginform.css'
+import apiService from "../../services/apiservice";
+import { ToastContainer, toast } from 'react-toastify';
 
 const LoginForm = () => {
+
+  const navigate = useNavigate();
+
+  const [loginForm, setLoginForm] = useState({
+    email: '',
+    password: ''
+  })
+
+  const [formValid, setFormValid] = useState(false);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setLoginForm({
+      ...loginForm,
+      [name]: value
+    });
+  };
+
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+  const checkFormValidity = () => {
+    const { email, password } = loginForm;
+    setFormValid(
+      email.trim() !== '' &&
+      password.trim() !== '' &&
+      validateEmail(email));
+  };
+
+  React.useEffect(() => {
+    checkFormValidity();
+  }, [loginForm]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log("e: ", loginForm)
+    try {
+      const response = apiService.postUser(loginForm)
+      console.log("Respuesta post user: ", response)
+      toast.success('¡Datos ingresados correctamente!');
+      navigate('/');
+    } catch (error) {
+      toast.error('Hubo problemas para ingresar a la cuenta. Por favor, inténtelo nuevamente.');
+      console.error('Error en la llamada de Post User:', error);
+    }
+  }
+
   return (
-    <div class="login-container">
-      <div class="login-message">
+    <div className="login-container">
+      <div className="login-message">
         <h2>Travel and Play</h2>
         <p>
           Discover the ultimate event experience with our app! Seamlessly create and join events, bringing together family, friends, and fellow enthusiasts.
         </p>
       </div>
-      <form class="form">
-        <div class="flex-column">
+      <form className="form" onSubmit={handleSubmit}>
+        {/* Email */}
+        <div className="flex-column">
           <label>Email </label>
         </div>
-        <div class="inputForm">
+        <div className="inputForm">
           <svg
             height="20"
             viewBox="0 0 32 32"
@@ -32,16 +84,21 @@ const LoginForm = () => {
 
           <input
             type="text"
-            class="input"
+            className="input"
             placeholder="Enter your email"
-            autocomplete="off"
+            autoComplete="off"
+            id="email"
+            name="email"
+            value={loginForm.email}
+            onChange={handleInputChange}
+            required
           />
         </div>
-
-        <div class="flex-column">
+        {/* Password */}
+        <div className="flex-column">
           <label>Password </label>
         </div>
-        <div class="inputForm">
+        <div className="inputForm">
           <svg
             height="20"
             viewBox="-64 0 512 512"
@@ -57,21 +114,29 @@ const LoginForm = () => {
               fill="rgba(0,0,0,0.5)"
             ></path>
           </svg>
-          <input type="password" class="input" placeholder="Enter your password" />
+          <input
+            type="password"
+            autoComplete="off"
+            className="input"
+            placeholder="Enter your password"
+            id="password"
+            name="password"
+            value={loginForm.password}
+            onChange={handleInputChange}
+            required
+          />
         </div>
-
-        <Link to="/">
-          <button class="button-submit">
-            Login
-          </button>
-        </Link>
+        <button className="button-submit" disabled={!formValid} style={{ backgroundColor: !formValid ? '#CCCCCC' : '#9979f5', cursor: !formValid ? 'not-allowed' : 'pointer' }}>
+          Login
+        </button>
         <p>
           Still don't have an account?
           <Link to="/sign-up" className="link-to-signup">
-            <span class="span"> Sign Up </span>
+            <span className="span"> Sign Up </span>
           </Link>
         </p>
       </form>
+      <ToastContainer />
     </div>
   );
 };

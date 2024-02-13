@@ -27,7 +27,7 @@ const NavigationBar = () => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Link to="/my-account" className='navigation-link'>
+                <Link to="/profile/2" className='navigation-link'>
                   <Dropdown.Item href="#/action-1"> Profile </Dropdown.Item>
                 </Link>
                 <Link to="/favorites" className='navigation-link'>
