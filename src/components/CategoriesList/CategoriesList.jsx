@@ -6,6 +6,11 @@ const CategoriesList = () => {
 
     const categories = [
         {
+            titulo: "Home",
+            imagen: "https://res.cloudinary.com/dek86juo8/image/upload/v1708208870/icons8-home-50_s0nru4.png",
+            ruta: '/'
+        },
+        {
             titulo: "Food",
             imagen: "https://res.cloudinary.com/dek86juo8/image/upload/v1700348611/icons8-hamburger-50_osqcmr.png",
             ruta: `/categories/food`
@@ -36,11 +41,6 @@ const CategoriesList = () => {
             ruta: `/categories/kids`
         },
         {
-            titulo: "Elders",
-            imagen: "https://res.cloudinary.com/dek86juo8/image/upload/v1700349221/icons8-old-woman-smiling-50_mlaa2a.png",
-            ruta: `/categories/elders`
-        },
-        {
             titulo: "Public",
             imagen: "https://res.cloudinary.com/dek86juo8/image/upload/v1700349029/icons8-public-50_yvrz5f.png",
             ruta: `/categories/public`
@@ -50,8 +50,8 @@ const CategoriesList = () => {
     return (
         <div className="categories-container d-flex justify-content-around align-items-center flex-wrap ">
             {
-                categories.map((el) => (
-                    <Link key={el} to={el.ruta} className="category-box d-flex flex-column justify-content-center align-items-center decoration-none">
+                categories.map((el, index) => (
+                    <Link key={index} to={el.ruta} className="category-box d-flex flex-column justify-content-center align-items-center decoration-none">
                         <img src={el.imagen} alt={el.titulo} width="40px" />
                         <h6 className='category-title'> {el.titulo} </h6>
                     </Link>

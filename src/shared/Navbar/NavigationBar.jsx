@@ -2,11 +2,25 @@ import Container from 'react-bootstrap/Container';
 import { Button, Col, Dropdown, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './navigationbar.css'
+import { useState, useEffect } from 'react';
 
 
 const NavigationBar = () => {
 
-  // let registrado = true;
+  const [userId, setUserId] = useState(0); // or useState(0) if you prefer to start with 0
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('user_id');
+    if (storedUserId) {
+      setUserId(parseInt(storedUserId, 10));
+    }
+  }, []);
+
+  const clearLS = () => {
+    localStorage.removeItem('user_id')
+    localStorage.removeItem('id_user')
+  }
+
 
   return (
     <div className='border-bottom'>
@@ -27,13 +41,13 @@ const NavigationBar = () => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Link to="/profile/2" className='navigation-link'>
+                <Link to={`/profile/${userId}`} className='navigation-link'>
                   <Dropdown.Item href="#/action-1"> Profile </Dropdown.Item>
                 </Link>
                 <Link to="/favorites" className='navigation-link'>
                   <Dropdown.Item href="#/action-2"> My favorites </Dropdown.Item>
                 </Link>
-                <Link to="/login" className='navigation-link'>
+                <Link to="/login" className='navigation-link' onClick={clearLS} >
                   <Dropdown.Item href="#/action-3"> Logout </Dropdown.Item>
                 </Link>
               </Dropdown.Menu>

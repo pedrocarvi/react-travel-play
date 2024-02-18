@@ -9,10 +9,10 @@ const SignUpForm = () => {
     const navigate = useNavigate();
 
     const [signUpForm, setSignUpForm] = useState({
-        firstname: '',
-        lastname: '',
+        firstName: '',
+        lastName: '',
         email: '',
-        username: '',
+        userName: '',
         password: ''
     })
 
@@ -32,12 +32,12 @@ const SignUpForm = () => {
     };
 
     const checkFormValidity = () => {
-        const { firstname, lastname, email, username, password } = signUpForm;
+        const { firstName, lastName, email, userName, password } = signUpForm;
         setFormValid(
-            firstname.trim() !== '' &&
-            lastname.trim() !== '' &&
+            firstName.trim() !== '' &&
+            lastName.trim() !== '' &&
             email.trim() !== '' &&
-            username.trim() !== '' &&
+            userName.trim() !== '' &&
             password.trim() !== '' &&
             validateEmail(email)
         );
@@ -48,12 +48,12 @@ const SignUpForm = () => {
     }, [signUpForm]);
 
 
-    const submitForm = (e) => {
+    const submitForm = async (e) => {
         e.preventDefault()
         console.log("Sign Up Form Data: ", signUpForm)
         try {
-            const response = apiService.postUser(signUpForm)
-            console.log("Respuesta post user: ", response)
+            const response = await apiService.postUser(signUpForm)
+            localStorage.setItem('user_id', response.userId);
             toast.success('¡Datos ingresados correctamente!');
             navigate('/');
         } catch (error) {
@@ -83,8 +83,8 @@ const SignUpForm = () => {
                             placeholder="Ex. John"
                             autoComplete='off'
                             id="firstname"
-                            name="firstname"
-                            value={signUpForm.firstname}
+                            name="firstName"
+                            value={signUpForm.firstName}
                             onChange={handleInputChange}
                             required
                         />
@@ -102,8 +102,8 @@ const SignUpForm = () => {
                             placeholder="Ex. Doe"
                             autoComplete='off'
                             id="lastname"
-                            name="lastname"
-                            value={signUpForm.lastname}
+                            name="lastName"
+                            value={signUpForm.lastName}
                             onChange={handleInputChange}
                             required
                         />
@@ -121,8 +121,8 @@ const SignUpForm = () => {
                             placeholder="Enter your username"
                             autoComplete="off"
                             id="username"
-                            name="username"
-                            value={signUpForm.username}
+                            name="userName"
+                            value={signUpForm.userName}
                             onChange={handleInputChange}
                             required
                         />
@@ -169,9 +169,9 @@ const SignUpForm = () => {
                     Sign Up
                 </button>
                 <p className="p">
-                    Already have an account?
+                    Already have an account?{' '}
                     <Link to="/login" className="link-to-login">
-                        <span className="span"> Login </span>
+                        <span className="span">Login</span>
                     </Link>
                 </p>
             </form>

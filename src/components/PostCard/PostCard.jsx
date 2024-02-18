@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 function PostCard({ postdata }) {
   return (
-    <div className="card">
-      <div className="card__img" style={{ backgroundImage: `url(${postdata.pictured})` }}>
+    <div className="card" key={postdata.postedId}>
+      <div className="card__img" style={{ backgroundImage: `url(${postdata.pictured_fav})` }}>
         <span className="card__span">{postdata.category}</span>
       </div>
       <div className="card-int">

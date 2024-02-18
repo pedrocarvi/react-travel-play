@@ -45,7 +45,7 @@ const LoginForm = () => {
     console.log("e: ", loginForm)
     try {
       const response = apiService.postUser(loginForm)
-      console.log("Respuesta post user: ", response)
+      localStorage.setItem('user_id', response.userId);
       toast.success('¡Datos ingresados correctamente!');
       navigate('/');
     } catch (error) {
