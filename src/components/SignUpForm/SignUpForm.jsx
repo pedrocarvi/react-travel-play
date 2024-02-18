@@ -15,8 +15,10 @@ const SignUpForm = () => {
         userName: '',
         password: ''
     })
-
     const [formValid, setFormValid] = useState(false);
+    const [signUpClicked, setSignUpClicked] = useState(false);
+    const [emailValid, setEmailValid] = useState(false)
+    const [passwordValid, setPasswordValid] = useState(false)
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -26,21 +28,34 @@ const SignUpForm = () => {
         });
     };
 
+    const isSignUpClicked = () => {
+        setSignUpClicked(true)
+    }
+
     const validateEmail = (email) => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(email);
     };
 
+    const validatePassword = (password) => {
+        const regex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+        return regex.test(password);
+    };
+
     const checkFormValidity = () => {
         const { firstName, lastName, email, userName, password } = signUpForm;
+        const isEmailValid = validateEmail(email);
+        const isPasswordValid = validatePassword(password);
         setFormValid(
             firstName.trim() !== '' &&
             lastName.trim() !== '' &&
             email.trim() !== '' &&
             userName.trim() !== '' &&
-            password.trim() !== '' &&
-            validateEmail(email)
+            isEmailValid &&
+            isPasswordValid
         );
+        setEmailValid(isEmailValid);
+        setPasswordValid(isPasswordValid);
     };
 
     React.useEffect(() => {
@@ -50,12 +65,15 @@ const SignUpForm = () => {
 
     const submitForm = async (e) => {
         e.preventDefault()
-        console.log("Sign Up Form Data: ", signUpForm)
         try {
-            const response = await apiService.postUser(signUpForm)
-            localStorage.setItem('user_id', response.userId);
-            toast.success('¡Datos ingresados correctamente!');
-            navigate('/');
+            if (formValid) {
+                const response = await apiService.postUser(signUpForm)
+                localStorage.setItem('user_id', response.userId);
+                toast.success('¡Datos ingresados correctamente!');
+                setTimeout(() => {
+                    navigate('/');
+                }, 2000);
+            }
         } catch (error) {
             toast.error('Hubo problemas para crear la cuenta. Por favor, inténtelo nuevamente.');
             console.error('Error en la llamada de Post User:', error);
@@ -146,6 +164,7 @@ const SignUpForm = () => {
                             required
                         />
                     </div>
+                    {(signUpClicked && !emailValid) && <p style={{ color: 'red', textAlign: 'start' }}> Please enter a valid email </p>}
                 </div>
                 {/* Password */}
                 <div className="input-cnt">
@@ -155,6 +174,7 @@ const SignUpForm = () => {
                     <div className="inputForm">
                         <input
                             type="password"
+                            autoComplete='off'
                             className="input-signup"
                             placeholder="Enter your password"
                             id="password"
@@ -164,8 +184,9 @@ const SignUpForm = () => {
                             required
                         />
                     </div>
+                    {(signUpClicked && !passwordValid) && <p style={{ color: 'red', textAlign: 'start' }}>Password must have at least 8 characters, one uppercase letter and one number</p>}
                 </div>
-                <button className="button-submit" disabled={!formValid} style={{ backgroundColor: !formValid ? '#CCCCCC' : '#9979f5', cursor: !formValid ? 'not-allowed' : 'pointer' }}>
+                <button className="button-submit" onClick={isSignUpClicked} >
                     Sign Up
                 </button>
                 <p className="p">

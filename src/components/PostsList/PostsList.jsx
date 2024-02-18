@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import apiService from '../../services/apiservice';
 import PostCard from "../PostCard/PostCard";
+import './postslist.css'
 
 function PostsList() {
   const location = useLocation();
@@ -12,6 +13,7 @@ function PostsList() {
     const fetchPosts = async () => {
       try {
         const postsData = await apiService.getAllPosts();
+        console.log("post data postlist", postsData)
         if (category !== undefined) {
           const postsDataFiltered = postsData.filter(el => el.category === category)
           setPosts(postsDataFiltered);
@@ -32,7 +34,7 @@ function PostsList() {
       {posts.length === 0 ? (
         <p>No posts available. Create one!</p>
       ) : (
-        <div className="posts-container d-flex justify-content-start align-items-center flex-wrap gap-3 pt-0 mt-0">
+        <div className="posts-container">
           {posts.map((post) => (
             <PostCard key={post.postedId} postdata={post}></PostCard>
           ))}

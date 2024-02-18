@@ -1,5 +1,5 @@
 .card {
-  width: 300px;
+  width: 280px;
   position: relative;
   background: rgb(255, 255, 255);
   padding: 10px;
@@ -31,6 +31,10 @@
 
 .card-int {
   padding: 20px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-int__title {

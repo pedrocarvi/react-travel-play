@@ -5,7 +5,10 @@ function PostCard({ postdata }) {
   return (
     <div className="card" key={postdata.postedId}>
       <div className="card__img" style={{ backgroundImage: `url(${postdata.pictured_fav})` }}>
-        <span className="card__span">{postdata.category}</span>
+        <Link to={`/categories/${postdata.category}`} style={{ color: 'black' }}>
+          <span className="card__span">{postdata.category}</span>
+        </Link>
+
       </div>
       <div className="card-int">
         <p className="card-int__title"> {postdata.name_posted} </p>

@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import apiService from '../../services/apiservice';
 import './addpostcomponent.css'
+import { ToastContainer, toast } from 'react-toastify'
+import { Link, useNavigate } from 'react-router-dom'
 
 const AddPostComponent = () => {
 
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
-        picture_fav: '',
         pictured: [],
+        pictured_fav: '',
         name_posted: '',
         description: '',
-        posted_fav: false,
         category: '',
+        posted_fav: true,
         locationX: '',
         locationY: '',
-        uuserId: 1
+        uuserId: localStorage.getItem('user_id')
     });
 
     const handleChange = (e) => {
@@ -28,9 +32,14 @@ const AddPostComponent = () => {
 
     const handlePostData = async (e) => {
         e.preventDefault();
+        console.log("form data: ", formData)
         try {
             const result = await apiService.postData(formData);
-            console.log(result);
+            console.log(result)
+            toast.success('¡El posteo se creó correctamente!');
+            setTimeout(() => {
+                navigate('/');
+            }, 2000);
         } catch (error) {
             console.log(error)
         }
@@ -44,8 +53,9 @@ const AddPostComponent = () => {
 
                 {/* Imagen */}
                 <div className="mb-3">
-                    <label htmlFor="picture_fav" className="form-label">Picture</label>
-                    <input type="file" className="form-control" id="picture_fav" name="picture_fav" onChange={handleChange} accept="image/*" />
+                    <label htmlFor="pictured_fav" className="form-label">Picture</label>
+                    {/* <input type="file" className="form-control" id="pictured_fav" name="pictured_fav" onChange={handleChange} accept="image/*" /> */}
+                    <input type="text" className="form-control" id="pictured_fav" placeholder="Enter image url" name="pictured_fav" onChange={handleChange} />
                 </div>
 
                 {/* Titulo */}
@@ -78,14 +88,17 @@ const AddPostComponent = () => {
 
                 {/* Cancelar y enviar formulario */}
                 <div className="addpost-btns-container">
-                    <button type="button" className="btn btn-outline" id='addpost-cancel-btn'>
-                        Cancel
-                    </button>
+                    <Link to="/" className="link-to-login">
+                        <button type="button" className="btn btn-outline" id='addpost-cancel-btn'>
+                            Cancel
+                        </button>
+                    </Link>
                     <button type="submit" className="btn btn-primary" id='addpost-btn'>
                         Add new
                     </button>
                 </div>
             </form>
+            <ToastContainer />
         </div>
     );
 };

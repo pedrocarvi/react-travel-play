@@ -54,7 +54,6 @@ const NavigationBar = () => {
             </Dropdown>
           </Col>
         </Row>
-
       </Container>
     </div>
   )

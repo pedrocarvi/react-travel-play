@@ -40,6 +40,20 @@ const apiService = {
             throw error;
         }
     },
+    // Get Posts By User
+    getPostsByUserId: async (id) => {
+        try {
+            const response = await fetch(`${apiUrl}/posted/getAllPostByUuser/${id}`)
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`Error en la llamada a la API: ${response.status} - ${errorData.message}`);
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Error en la llamada a la API:', error);
+            throw error;
+        }
+    },
     // Post New Post
     postData: async (data) => {
         try {

@@ -12,8 +12,8 @@ const LoginForm = () => {
     email: '',
     password: ''
   })
-
   const [formValid, setFormValid] = useState(false);
+  const [loginClicked, setLoginClicked] = useState(false)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -22,6 +22,10 @@ const LoginForm = () => {
       [name]: value
     });
   };
+
+  const isLoginClicked = () => {
+    setLoginClicked(true)
+  }
 
   const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -40,14 +44,15 @@ const LoginForm = () => {
     checkFormValidity();
   }, [loginForm]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log("e: ", loginForm)
     try {
-      const response = apiService.postUser(loginForm)
-      localStorage.setItem('user_id', response.userId);
-      toast.success('¡Datos ingresados correctamente!');
-      navigate('/');
+      if (formValid) {
+        const response = await apiService.postUser(loginForm)
+        localStorage.setItem('user_id', response.userId);
+        toast.success('¡Datos ingresados correctamente!');
+        navigate('/');
+      }
     } catch (error) {
       toast.error('Hubo problemas para ingresar a la cuenta. Por favor, inténtelo nuevamente.');
       console.error('Error en la llamada de Post User:', error);
@@ -94,6 +99,7 @@ const LoginForm = () => {
             required
           />
         </div>
+        {(loginClicked && !formValid) && <p style={{ color: 'red', textAlign: 'start' }}> Please enter a valid email </p>}
         {/* Password */}
         <div className="flex-column">
           <label>Password </label>
@@ -126,7 +132,7 @@ const LoginForm = () => {
             required
           />
         </div>
-        <button className="button-submit" disabled={!formValid} style={{ backgroundColor: !formValid ? '#CCCCCC' : '#9979f5', cursor: !formValid ? 'not-allowed' : 'pointer' }}>
+        <button className="button-submit" onClick={isLoginClicked} >
           Login
         </button>
         <p>

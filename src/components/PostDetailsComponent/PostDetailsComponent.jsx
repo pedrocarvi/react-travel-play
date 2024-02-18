@@ -1,37 +1,5 @@
-// import React from 'react';
-// import { useParams } from 'react-router-dom';
-// import PostsService from '../../services/PostsService';
-// import { Button } from 'react-bootstrap';
-// import './postdetailscomponent.css'
-
-// const PostDetailsPage = ({ getPosts }) => {
-//     const { id } = useParams();
-//     const post = PostsService.getPostById(id)
-
-//     if (!post) {
-//         return <div>No se encontró la publicación</div>;
-//     }
-
-//     return (
-//         <div className='postdetails-container'>
-//             <div className="postdetails-img" style={{ backgroundImage: `url(${post.image})` }}></div>
-//             <h3> {post.title} </h3>
-//             <h6> {post.category}</h6>
-//             <p> {post.description}</p>
-//             <div>
-//                 <Button variant="primary">Ver Perfil</Button>{" "}
-//                 <Button variant="primary">Guardar</Button>{" "}
-//                 <Button variant="success">Compartir</Button>{" "}
-//             </div>
-//         </div>
-//     );
-// };
-
-
-// export default PostDetailsPage;
-
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import apiService from '../../services/apiservice';
 import { Button } from 'react-bootstrap';
 import './postdetailscomponent.css'
@@ -39,19 +7,58 @@ import './postdetailscomponent.css'
 const PostDetailsPage = () => {
     const { id } = useParams();
     const [post, setPost] = useState(null);
+    const [comments, setComments] = useState([])
+    const [commentText, setCommentText] = useState('');
+    const [commentStatus, setCommentStatus] = useState({
+        loading: false,
+        error: null
+    });
 
     useEffect(() => {
         const fetchPost = async () => {
             try {
                 const postData = await apiService.getPostById(id);
                 setPost(postData);
+                const allCommentsData = await apiService.getAllComments();
+                const postComments = allCommentsData.filter(comment => comment.postedId === parseInt(id));
+                setComments(postComments);
             } catch (error) {
                 console.error('Error al obtener el post:', error);
             }
         };
-
         fetchPost();
     }, [id]);
+
+    const handleCopyUrlToClipboard = () => {
+        const currentUrl = window.location.href;
+        navigator.clipboard.writeText(currentUrl)
+            .then(() => {
+                console.log("URL copiada al portapapeles:", currentUrl);
+                alert("URL copiada al portapapeles");
+            })
+            .catch((error) => {
+                console.error("Error al copiar la URL al portapapeles:", error);
+                alert("Error al copiar la URL al portapapeles");
+            });
+    };
+
+    const handleCommentSubmit = async () => {
+        try {
+            setCommentStatus({ loading: true, error: null });
+            const userId = localStorage.getItem('user_id');
+            const newComment = {
+                uuserId: userId,
+                comment: commentText,
+                postedId: post.postedId // Assuming post object has postedId property
+            };
+            await apiService.postComment(newComment);
+            setCommentText('');
+            setCommentStatus({ loading: false, error: null });
+            // Optionally, you can fetch updated post data here to refresh the comments
+        } catch (error) {
+            setCommentStatus({ loading: false, error: error.message });
+        }
+    };
 
     if (!post) {
         return <div>No se encontró la publicación</div>;
@@ -59,14 +66,36 @@ const PostDetailsPage = () => {
 
     return (
         <div className='postdetails-container'>
-            <div className="postdetails-img" style={{ backgroundImage: `url(${post.pictured})` }}></div>
+            <div className="postdetails-img" style={{ backgroundImage: `url(${post.pictured_fav})` }}></div>
             <h3> {post.name_posted} </h3>
             <h6> {post.category}</h6>
             <p> {post.description}</p>
             <div>
-                <Button variant="primary">Ver Perfil</Button>{" "}
-                <Button variant="primary">Guardar</Button>{" "}
-                <Button variant="success">Compartir</Button>{" "}
+                <Link to={`/profile/${post.uuserId}`} >
+                    <Button variant="primary">Ver Perfil</Button>
+                </Link>
+                <Button variant="primary">Guardar</Button>
+                <Button variant="success" onClick={handleCopyUrlToClipboard}>Compartir</Button>
+            </div>
+            <div>
+                <textarea
+                    rows="4"
+                    cols="50"
+                    value={commentText}
+                    onChange={(e) => setCommentText(e.target.value)}
+                />
+                <Button variant="primary" onClick={handleCommentSubmit} disabled={commentStatus.loading}>
+                    {commentStatus.loading ? 'Enviando...' : 'Enviar Comentario'}
+                </Button>
+                {commentStatus.error && <div>Error: {commentStatus.error}</div>}
+            </div>
+            <div>
+                <h4>Comentarios</h4>
+                {comments.map((comment) => (
+                    <div key={comment.commentId}>
+                        <p>{comment.the_comment}</p>
+                    </div>
+                ))}
             </div>
         </div>
     );
