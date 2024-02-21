@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import apiService from '../../services/apiservice';
 import PostCard from "../PostCard/PostCard";
+import noPostsImg from '../../assets/images/noposts.png'
 import './postslist.css'
 
 function PostsList() {
@@ -32,7 +33,11 @@ function PostsList() {
   return (
     <>
       {posts.length === 0 ? (
-        <p>No posts available. Create one!</p>
+        <div className='noPosts-container'>
+          <h3> We could not find any post </h3>
+          <p> Create one yourself!</p>
+          <img src={noPostsImg} alt="We could not find any post!" width={200} />
+        </div>
       ) : (
         <div className="posts-container">
           {posts.map((post) => (

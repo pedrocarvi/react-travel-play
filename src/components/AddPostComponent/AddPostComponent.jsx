@@ -14,7 +14,7 @@ const AddPostComponent = () => {
         name_posted: '',
         description: '',
         category: '',
-        posted_fav: true,
+        posted_fav: false,
         locationX: '',
         locationY: '',
         uuserId: localStorage.getItem('user_id')
@@ -81,7 +81,6 @@ const AddPostComponent = () => {
                         <option value="Party">Party</option>
                         <option value="Music">Music</option>
                         <option value="Kids">Kids</option>
-                        <option value="Elders">Elders</option>
                         <option value="Public">Public</option>
                     </select>
                 </div>

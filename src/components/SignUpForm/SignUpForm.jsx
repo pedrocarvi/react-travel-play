@@ -67,12 +67,14 @@ const SignUpForm = () => {
         e.preventDefault()
         try {
             if (formValid) {
-                const response = await apiService.postUser(signUpForm)
-                localStorage.setItem('user_id', response.userId);
-                toast.success('¡Datos ingresados correctamente!');
-                setTimeout(() => {
-                    navigate('/');
-                }, 2000);
+                const response = await apiService.signup(signUpForm)
+                console.log(response)
+                navigate('/')
+                // localStorage.setItem('user_id', response.userId);
+                // toast.success('¡Datos ingresados correctamente!');
+                // setTimeout(() => {
+                //     navigate('/');
+                // }, 2000);
             }
         } catch (error) {
             toast.error('Hubo problemas para crear la cuenta. Por favor, inténtelo nuevamente.');
