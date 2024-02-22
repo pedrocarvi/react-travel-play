@@ -50,6 +50,14 @@
   color: #000000c0;
 }
 
+.card-btns-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
 .postcard-btn {
   padding: 6px 16px;
   background-color: #9979f5;
@@ -60,4 +68,37 @@
 
 .postcard-btn:hover {
   background-color: #aa8ffc;
+}
+
+.favorite-span {
+  border: 1px solid #9979f5;
+  border-radius: 5px;
+  padding: 6px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.favorite-span:hover {
+  cursor: pointer;
+  background-color: #efeafd;
+}
+
+.delete-span {
+  border: 1px solid red;
+  border-radius: 5px;
+  padding: 6px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-span:hover {
+  cursor: pointer;
+  background-color: #ffe6e6;
+}
+
+.favorite-span img,
+.delete-span img {
+  width: 20px;
 }

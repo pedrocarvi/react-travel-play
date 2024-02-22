@@ -12,7 +12,8 @@ const FavoritesList = () => {
         const fetchPosts = async () => {
             try {
                 const postsData = await apiService.getAllPosts();
-                setPosts(postsData); // Update state with fetched posts
+                const favoritePosts = postsData.filter(p => p.posted_fav === true)
+                setPosts(favoritePosts);
                 console.log("post data postlist", postsData);
             } catch (error) {
                 console.error("Error al obtener las publicaciones:", error);
@@ -26,13 +27,13 @@ const FavoritesList = () => {
         <>
             {posts.length === 0 ? (
                 <div className='noPosts-container'>
-                    <h3> We could not find any favorite post </h3>
+                    <h3> We couldn't find any favorite post </h3>
                     <p> Save your fav posts!</p>
                     <img src={noFavorites} alt="We could not find any post!" width={200} />
                 </div>
             ) : (
                 <div className='favoriteslist-container d-flex justify-content-start align-items-center flex-wrap gap-3 pt-0 mt-0'>
-                    {posts.filter(p => p.posted_fav === true).map((p, index) => (
+                    {posts.map((p, index) => (
                         <PostCard key={index} postdata={p} />
                     ))}
                 </div>

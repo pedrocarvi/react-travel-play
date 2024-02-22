@@ -28,12 +28,11 @@
 .info-container h3 {
   font-size: 42px;
   font-weight: bold;
-  margin-bottom: 20px;
   padding-left: 20px;
 }
 
 .info-container h6 {
-  padding: 12px 24px;
+  padding: 5px 16px;
   color: rgb(194, 13, 239);
   background-color: rgb(238, 199, 255);
   border: 1px solid #e47aff;
@@ -64,7 +63,7 @@
 }
 
 .commentInput-container button {
-  width: 120px;
+  width: fit-content;
   height: 50px;
 }
 

@@ -19,8 +19,7 @@ function PostsList() {
           const postsDataFiltered = postsData.filter(el => el.category === category)
           setPosts(postsDataFiltered);
         } else {
-          const popularPost = postsData.filter(el => el.posted_fav === true)
-          setPosts(popularPost);
+          setPosts(postsData);
         }
       } catch (error) {
         console.error("Error al obtener las publicaciones:", error);
@@ -34,7 +33,7 @@ function PostsList() {
     <>
       {posts.length === 0 ? (
         <div className='noPosts-container'>
-          <h3> We could not find any post </h3>
+          <h3> We couldn't find any post </h3>
           <p> Create one yourself!</p>
           <img src={noPostsImg} alt="We could not find any post!" width={200} />
         </div>

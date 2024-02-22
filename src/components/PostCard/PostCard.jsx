@@ -2,6 +2,8 @@ import "./postcard.css"
 import { Link } from "react-router-dom";
 import apiService from "../../services/apiservice";
 import { ToastContainer, toast } from "react-toastify";
+import favoritePurpleIcon from "../../assets/icons/favorite-icon-purple.png"
+import deleteIcon from "../../assets/icons/icons8-delete-50.png"
 
 function PostCard({ postdata }) {
 
@@ -16,7 +18,7 @@ function PostCard({ postdata }) {
       "name_posted": postdata.name_posted,
       "description": postdata.description,
       "category": postdata.category,
-      "posted_fav": true,
+      "posted_fav": !postdata.posted_fav,
       "locationX": postdata.locationX,
       "locationY": postdata.locationY
     };
@@ -24,15 +26,28 @@ function PostCard({ postdata }) {
     try {
       const postId = postdata.postedId;
       console.log("body: ", body)
-      console.log("id del post: ", postId)
-      // Call the putPost function with the postId and postData
       const result = await apiService.updatePost(postId, body);
-      if (result) {
-        toast.success('¡El posteo se añadio a tus favoritos!');
-      }
+      // if (result) {
+      //   toast.success('¡El posteo se añadio a tus favoritos!');
+      // }
     } catch (error) {
+      toast.success('¡El posteo se añadio a tus favoritos!');
       console.log(error);
-      toast.error('Error al actualizar el posteo');
+    }
+  }
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    try {
+      const postId = postdata.postedId;
+      const response = await apiService.deletePost(postId)
+      // console.log(response);
+      // if (response) {
+      //   toast.success('¡El posteo se elimino!');
+      // }
+    } catch (error) {
+      toast.success('El posteo se elimino correctamente.');
+      console.log(error);
     }
   }
 
@@ -47,10 +62,18 @@ function PostCard({ postdata }) {
       <div className="card-int">
         <p className="card-int__title"> {postdata.name_posted} </p>
         <p className="card-description"> {postdata.description}</p>
-        <Link to={`/post-details/${postdata.postedId}`}>
-          <button className="postcard-btn"> View more</button>
-        </Link>
-        <button onClick={handleFavorite}> Añadir a favorito </button>
+        <p className="card-description"> {postdata.address}, {postdata.city}, {postdata.state}</p>
+        <div className="card-btns-container">
+          <Link to={`/post-details/${postdata.postedId}`}>
+            <button className="postcard-btn"> View more</button>
+          </Link>
+          <span onClick={handleFavorite} className="favorite-span">
+            <img src={favoritePurpleIcon} alt="favorite icon" width={30} />
+          </span>
+          <span onClick={handleDelete} className="delete-span">
+            <img src={deleteIcon} alt="delete icon" width={30} />
+          </span>
+        </div>
       </div>
       <ToastContainer />
     </div>

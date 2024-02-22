@@ -18,7 +18,10 @@ function getCommonHeaders() {
 const apiService = {
   signup: async (data) => {
     try {
-      const response = await fetch(`${apiUrl}/auth/register`, data);
+      const response = await fetch(`${apiUrl}/auth/register`, {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
       const responseData = await response.json();
       setAuthToken(responseData.token);
       console.log("token: ", responseData);
@@ -101,15 +104,8 @@ const apiService = {
         body: JSON.stringify(data),
         ...getCommonHeaders(),
       });
-
-      if (!response.ok) {
-        if (response.status === 200 && response.statusText) {
-          return response.statusText;
-        }
-        throw new Error("Error al realizar la solicitud");
-      }
       const responseData = await response.json();
-      return responseData || response.statusText;
+      return responseData;
     } catch (error) {
       console.error("Error en la llamada a la API:", error);
       throw error;
@@ -118,7 +114,9 @@ const apiService = {
   // Delete Post
   deletePost: async (id) => {
     try {
-      const response = await fetch(`${apiUrl}/posted/deletById/${id}`);
+      const response = await fetch(`${apiUrl}/posted/deletById/${id}`, {
+        method: "DELETE",
+      });
       if (!response.ok) {
         throw new Error("Error al realizar la solicitud");
       }

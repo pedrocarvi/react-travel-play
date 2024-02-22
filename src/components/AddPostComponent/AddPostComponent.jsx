@@ -14,9 +14,10 @@ const AddPostComponent = () => {
         name_posted: '',
         description: '',
         category: '',
+        // address: '',
+        // city: '',
+        // state: '',
         posted_fav: false,
-        locationX: '',
-        locationY: '',
         uuserId: localStorage.getItem('user_id')
     });
 
@@ -69,6 +70,24 @@ const AddPostComponent = () => {
                     <label htmlFor="description" className="form-label">Description</label>
                     <textarea className="form-control" id="description" placeholder="Enter description" name="description" onChange={handleChange}></textarea>
                 </div>
+
+                {/* Address */}
+                {/* <div className="mb-3">
+                    <label htmlFor="address" className="form-label">Address</label>
+                    <input type="text" className="form-control" id="address" placeholder="Enter address" name="address" onChange={handleChange} />
+                </div> */}
+
+                {/* City */}
+                {/* <div className="mb-3">
+                    <label htmlFor="city" className="form-label">City</label>
+                    <input type="text" className="form-control" id="city" placeholder="Enter city" name="city" onChange={handleChange} />
+                </div> */}
+
+                {/* State */}
+                {/* <div className="mb-3">
+                    <label htmlFor="state" className="form-label">State</label>
+                    <input type="text" className="form-control" id="state" placeholder="Enter state" name="state" onChange={handleChange} />
+                </div> */}
 
                 {/* Categoria */}
                 <div className="mb-3">
