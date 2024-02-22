@@ -3,10 +3,16 @@ import { Button, Col, Dropdown, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './navigationbar.css'
 import { useState, useEffect } from 'react';
+import LoginButton from './LoginButton';
+import ProfileButton from './ProfileButton';
+import { useAuth0 } from "@auth0/auth0-react";
+import LogoutButton from './LogoutButton';
+import RegistroButton from './RegistroButton';
 
 
 const NavigationBar = () => {
 
+  const { isAuthenticated } = useAuth0();
   const [userId, setUserId] = useState(0); // or useState(0) if you prefer to start with 0
 
   useEffect(() => {
@@ -39,6 +45,20 @@ const NavigationBar = () => {
               <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
                 My account
               </Dropdown.Toggle>
+
+              <div>
+                {isAuthenticated ? (
+                  <>
+                    <LogoutButton />
+                    <ProfileButton />
+                  </>
+                ) : (
+                  <>
+                    <LoginButton />
+                    <RegistroButton />
+                  </>
+                )}
+              </div>
 
               <Dropdown.Menu>
                 <Link to={`/profile/${userId}`} className='navigation-link'>

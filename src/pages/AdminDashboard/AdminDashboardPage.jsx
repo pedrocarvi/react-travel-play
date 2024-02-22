@@ -1,6 +1,6 @@
 import React from 'react'
 import NavigationBar from '../../shared/Navbar/NavigationBar'
-import Footer from '../../shared/Footer/Footer'
+import Footer from '../../shared/footer/Footer'
 import AdminDashboard from '../../components/AdminDashboard/AdminDashboard'
 
 const AdminDashboardPage = () => {
