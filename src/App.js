@@ -10,6 +10,7 @@ import Login from "./pages/LoginPage/Login";
 import SignUp from "./pages/SignUpPage/SignUp";
 import UserDashboard from "./pages/UserDashboard/UserDashboard";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
+import AdminDashboard from "./pages/AdminDashboard/AdminDashboardPage.jsx";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="sign-up" element={<SignUp />} />
         <Route path="favorites" element={<FavoritesPage />} />
         <Route path="categories/:category" element={<Homepage />} />
+        <Route path="admin-dashboard" element={<AdminDashboard />} />
       </Routes>
     </BrowserRouter>
   );
