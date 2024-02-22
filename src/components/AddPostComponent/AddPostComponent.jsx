@@ -9,14 +9,16 @@ const AddPostComponent = () => {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
-        pictured: [],
-        pictured_fav: '',
+        title_picture: '',
+        extension_picture: '',
+        base64_picture: '',
         name_posted: '',
         description: '',
         category: '',
-        posted_fav: true,
-        locationX: '',
-        locationY: '',
+        address: '',
+        city: '',
+        state: '',
+        posted_fav: false,
         uuserId: localStorage.getItem('user_id')
     });
 
@@ -29,6 +31,24 @@ const AddPostComponent = () => {
         });
     };
 
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const base64 = e.target.result;
+                const extension = file.name.split('.').pop();
+                const title = file.name.substring(0, file.name.lastIndexOf('.'));
+                setFormData({
+                    ...formData,
+                    title_picture: title,
+                    extension_picture: extension,
+                    base64_picture: base64
+                });
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     const handlePostData = async (e) => {
         e.preventDefault();
@@ -45,17 +65,14 @@ const AddPostComponent = () => {
         }
     };
 
-
     return (
         <div className='addpost-container'>
             <h3>Add new post</h3>
             <form onSubmit={handlePostData} id='addpost-form'>
 
-                {/* Imagen */}
                 <div className="mb-3">
                     <label htmlFor="pictured_fav" className="form-label">Picture</label>
-                    {/* <input type="file" className="form-control" id="pictured_fav" name="pictured_fav" onChange={handleChange} accept="image/*" /> */}
-                    <input type="text" className="form-control" id="pictured_fav" placeholder="Enter image url" name="pictured_fav" onChange={handleChange} />
+                    <input type="file" accept="image/*" onChange={handleFileChange} />
                 </div>
 
                 {/* Titulo */}
@@ -68,6 +85,24 @@ const AddPostComponent = () => {
                 <div className="mb-3">
                     <label htmlFor="description" className="form-label">Description</label>
                     <textarea className="form-control" id="description" placeholder="Enter description" name="description" onChange={handleChange}></textarea>
+                </div>
+
+                {/* Address */}
+                <div className="mb-3">
+                    <label htmlFor="address" className="form-label">Address</label>
+                    <input type="text" className="form-control" id="address" placeholder="Enter address" name="address" onChange={handleChange} />
+                </div>
+
+                {/* City */}
+                <div className="mb-3">
+                    <label htmlFor="city" className="form-label">City</label>
+                    <input type="text" className="form-control" id="city" placeholder="Enter city" name="city" onChange={handleChange} />
+                </div>
+
+                {/* State */}
+                <div className="mb-3">
+                    <label htmlFor="state" className="form-label">State</label>
+                    <input type="text" className="form-control" id="state" placeholder="Enter state" name="state" onChange={handleChange} />
                 </div>
 
                 {/* Categoria */}

@@ -3,7 +3,7 @@ import React from "react";
 // Routing
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Pages
-import Homepage from "./pages/HomePage/Homepage";
+import Homepage from "./pages/homepage/Homepage";
 import AddPostPage from "./pages/AddPostPage/AddPostPage";
 import PostDetailsPage from "./pages/PostsDetailsPage/PostDetailsPage";
 import Login from "./pages/LoginPage/Login";

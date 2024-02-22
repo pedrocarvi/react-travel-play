@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import apiService from '../../services/apiservice';
 import { Button } from 'react-bootstrap';
-import './postdetailscomponent.css'
+import './postdetailscomponent.css';
 
 const PostDetailsPage = () => {
     const { id } = useParams();
     const [post, setPost] = useState(null);
-    const [comments, setComments] = useState([])
+    const [comments, setComments] = useState([]);
     const [commentText, setCommentText] = useState('');
     const [commentStatus, setCommentStatus] = useState({
         loading: false,
@@ -64,11 +64,19 @@ const PostDetailsPage = () => {
         return <div>No se encontró la publicación</div>;
     }
 
+    // Aquí verificamos si existen los valores necesarios para la imagen
+    const backgroundImageStyle = post.title_picture && post.extension_picture && post.base64_picture
+        ? { backgroundImage: `url(data:image/${post.extension_picture};base64,${post.base64_picture})` }
+        : {};
+
     return (
         <div className='postdetails-container'>
-            <div className="postdetails-img" style={{ backgroundImage: `url(${post.pictured_fav})` }}></div>
+            <div className="postdetails-img" style={backgroundImageStyle}></div>
             <h3> {post.name_posted} </h3>
-            <h6> {post.category}</h6>
+            <h4> {post.category}</h4>
+            <h6> {post.address}</h6>
+            <h6> {post.city}</h6>
+            <h6> {post.state}</h6>
             <p> {post.description}</p>
             <div>
                 <Link to={`/profile/${post.uuserId}`} >
@@ -84,6 +92,7 @@ const PostDetailsPage = () => {
                     value={commentText}
                     onChange={(e) => setCommentText(e.target.value)}
                 />
+                <br></br>
                 <Button variant="primary" onClick={handleCommentSubmit} disabled={commentStatus.loading}>
                     {commentStatus.loading ? 'Enviando...' : 'Enviar Comentario'}
                 </Button>

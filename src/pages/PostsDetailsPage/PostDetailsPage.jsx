@@ -1,7 +1,7 @@
 import React from "react";
 import NavigationBar from "../../shared/Navbar/NavigationBar";
 import PostDetailsComponent from "../../components/PostDetailsComponent/PostDetailsComponent";
-import Footer from "../../shared/Footer/Footer";
+import Footer from "../../shared/footer/Footer";
 
 const PostDetailsPage = () => {
   return (
